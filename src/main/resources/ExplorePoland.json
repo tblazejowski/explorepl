@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Pegaz",
+    "description": "Nice location near Jaworzyna hill with SPA",
+    "keywords": "Krynica, Mineral Waters",
+    "price": "210",
+    "province": "Małopolska",
+    "starsRating": "SUPERIOR_COMFORT"
+  },
+  {
+    "name": "Młyna Jacka",
+    "description": "Full relax and good food.",
+    "keywords": "Wadowice, SPA",
+    "price": "370",
+    "province": "Małopolska",
+    "starsRating": "FIRST_CLASS"
+  },
+  {
+    "name": "Czarny Potok",
+    "description": "Nice location near Jaworzyna hill with SPA & Wellness",
+    "keywords": "Krynica, Mineral Waters",
+    "price": "590",
+    "province": "Małopolska",
+    "starsRating": "LUXURY"
+  },
+  {
+    "name": "Czarny Groń",
+    "description": "Great swimming pools",
+    "keywords": "Czarny Groń, swimming pools",
+    "price": "490",
+    "province": "Małopolska",
+    "starsRating": "FIRST_CLASS_SUPERIOR"
+  },
+  {
+    "name": "Gołębiewski",
+    "description": "You may feel the beauty of big lakes",
+    "keywords": "Mikołajki, Mazury lakes",
+    "price": "490",
+    "province": "Warmia-Mazury",
+    "starsRating": "FIRST_CLASS"
+  },
+  {
+    "name": "Gołębiewski",
+    "description": "Big fun in one of the greatest aqua parks.",
+    "keywords": "Wisła, aquapark, slides",
+    "price": "430",
+    "province": "Śląsk",
+    "starsRating": "FIRST_CLASS"
+  }
+]

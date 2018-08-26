@@ -37,8 +37,7 @@ public class Hotel implements Serializable {
         this.starsRating = starsRating;
     }
 
-    protected Hotel(){
-    }
+    protected Hotel(){}
 
     public Integer getId() {
         return Id;
