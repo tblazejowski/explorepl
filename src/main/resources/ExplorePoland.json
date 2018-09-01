@@ -46,5 +46,45 @@
     "price": "430",
     "province": "Śląsk",
     "starsRating": "FIRST_CLASS"
+  },
+  {
+    "name": "Novotel",
+    "description": "You are in the center of Warszawa city",
+    "keywords": "Warszawa, center, business-trip",
+    "price": "680",
+    "province": "Mazowsze",
+    "starsRating": "FIRST_CLASS_SUPERIOR"
+  },
+  {
+    "name": "Hilton",
+    "description": "Feel the heart beating of Poland",
+    "keywords": "Warszawa, center, business-trip",
+    "price": "620",
+    "province": "Mazowsze",
+    "starsRating": "FIRST_CLASS"
+  },
+  {
+    "name": "Sheraton",
+    "description": "Touch the beauty of Batlic Sea",
+    "keywords": "Sopot, Baltic sea",
+    "price": "590",
+    "province": "Pomorze",
+    "starsRating": "FIRST_CLASS"
+  },
+  {
+    "name": "Ludwik",
+    "description": "Enjoy staying at Hel Peninsula",
+    "keywords": "Półwysep helski",
+    "price": "390",
+    "province": "Pomorze",
+    "starsRating": "SUPERIOR_COMFORT"
+  },
+  {
+    "name": "Błękitna tafla",
+    "description": "Enjoy nice beaches in Władysławowo",
+    "keywords": "Władysławowo, sunny beach",
+    "price": "180",
+    "province": "Pomorze",
+    "starsRating": "COMFORT"
   }
 ]

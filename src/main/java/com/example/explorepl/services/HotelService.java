@@ -30,7 +30,7 @@ public class HotelService {
             return hotelRepository.save(new Hotel(name, description, keywords, price,
                     province.get(), starsRating));
         }
-        throw new RuntimeException("Province with code: " + provinceName + " does not exists.");
+        throw new RuntimeException("Province: " + provinceName + " does not exists.");
     }
     public Iterable<Hotel> lookup (){
         return hotelRepository.findAll();
