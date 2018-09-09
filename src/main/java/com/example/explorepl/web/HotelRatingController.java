@@ -7,6 +7,9 @@ import com.example.explorepl.domain.HotelRatingPk;
 import com.example.explorepl.repository.HotelRatingRepository;
 import com.example.explorepl.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -39,10 +42,12 @@ public class HotelRatingController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<RatingDto> getAllRatingsForHotel(@PathVariable(value = "hotelId") int hotelId) {
+    public Page<RatingDto> getAllRatingsForHotel(@PathVariable(value = "hotelId") int hotelId, Pageable pageable) {
         verifyTHotel(hotelId);
-        return hotelRatingRepository.findByPkHotelId(hotelId).stream().map(hotelRating -> toDto(hotelRating))
+        Page<HotelRating> hotelRatingPage = hotelRatingRepository.findByPkHotelId(hotelId, pageable);
+        List<RatingDto> ratingDtoList = hotelRatingPage.getContent().stream().map(hotelRating -> toDto(hotelRating))
                 .collect(Collectors.toList());
+        return new PageImpl<RatingDto>(ratingDtoList, pageable, hotelRatingPage.getTotalPages());
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/average")
