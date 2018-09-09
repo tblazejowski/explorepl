@@ -39,18 +39,44 @@ public class HotelRatingController {
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<RatingDto> getAllRatingsForHotel(@PathVariable(name = "hotelId") int hotelId) {
+    public List<RatingDto> getAllRatingsForHotel(@PathVariable(value = "hotelId") int hotelId) {
         verifyTHotel(hotelId);
         return hotelRatingRepository.findByPkHotelId(hotelId).stream().map(hotelRating -> toDto(hotelRating))
                 .collect(Collectors.toList());
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/average")
-    public AbstractMap.SimpleEntry<String, Double> getAverage(@PathVariable(name = "hotelId") int hotelId) {
+    public AbstractMap.SimpleEntry<String, Double> getAverage(@PathVariable(value = "hotelId") int hotelId) {
         verifyTHotel(hotelId);
         List<HotelRating> hotelRatings = hotelRatingRepository.findByPkHotelId(hotelId);
         OptionalDouble average = hotelRatings.stream().mapToInt(HotelRating::getScore).average();
         return new AbstractMap.SimpleEntry<String, Double>("average", average.isPresent() ? average.getAsDouble() : null);
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public RatingDto updateWithPut (@PathVariable(value = "hotelId") int hotelId, @RequestBody @Validated RatingDto ratingDto) {
+        HotelRating hotelRating = verifyHotelRating(hotelId, ratingDto.getCustomerId());
+        hotelRating.setScore(ratingDto.getScore());
+        hotelRating.setComment(ratingDto.getComment());
+        return toDto(hotelRatingRepository.save(hotelRating));
+    }
+
+    @RequestMapping(method = RequestMethod.PATCH)
+    public RatingDto updateWithPatch (@PathVariable(value = "hotelId") int hotelId, @RequestBody @Validated RatingDto ratingDto) {
+        HotelRating hotelRating = verifyHotelRating(hotelId, ratingDto.getCustomerId());
+        if (ratingDto.getScore() != null) {
+            hotelRating.setScore(ratingDto.getScore());
+        }
+        if (ratingDto.getComment() != null) {
+            hotelRating.setComment(ratingDto.getComment());
+        }
+        return toDto(hotelRatingRepository.save(hotelRating));
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "/{customerId}")
+    public void delete (@PathVariable(value = "hotelId") int hotelId, @PathVariable(value = "customerId") int customerId) {
+        HotelRating hotelRating = verifyHotelRating(hotelId, customerId);
+        hotelRatingRepository.delete(hotelRating);
     }
 
     /**
@@ -74,8 +100,8 @@ public class HotelRatingController {
     private HotelRating verifyHotelRating(int hotelId, int customerId) throws NoSuchElementException {
         HotelRating rating = hotelRatingRepository.findByPkHotelIdAndPkCustomerId(hotelId, customerId);
         if (rating == null) {
-            throw new NoSuchElementException("Hotel-Rating pair for request("
-                    + hotelId + " for customer" + customerId);
+            throw new NoSuchElementException("Hotel-Rating pair for requested hotel id: "
+                    + hotelId + " and for customer with id: " + customerId);
         }
         return rating;
     }
