@@ -52,8 +52,13 @@ public class ExploreplApplication implements CommandLineRunner {
         provinceService.createProvince("WA", "Mazowsze");
         provinceService.createProvince("ZS", "Pomorze Zachodnie");
         System.out.println("Number of provinces: " + provinceService.total());
-        HotelFromFile.importHotels().forEach(hotel -> hotelService.createHotel(hotel.name, hotel.description, hotel.keywords,
-                Integer.parseInt(hotel.price), hotel.province, StarsRating.valueOf(hotel.starsRating)));
+        HotelFromFile.importHotels().forEach(hotel -> hotelService.createHotel(
+                hotel.name,
+                hotel.description,
+                hotel.keywords,
+                Integer.parseInt(hotel.price),
+                hotel.province,
+                StarsRating.valueOf(hotel.starsRating)));
         System.out.println("Number of hotels: " + hotelService.total());
     }
 

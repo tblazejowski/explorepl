@@ -8,7 +8,7 @@ public class Hotel implements Serializable {
 
     @Id
     @GeneratedValue
-    private Integer Id;
+    private Integer id;
 
     @Column
     private String name;
@@ -40,11 +40,11 @@ public class Hotel implements Serializable {
     protected Hotel(){}
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        id = id;
     }
 
     public String getName() {
